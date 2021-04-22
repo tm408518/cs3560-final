@@ -1,0 +1,12 @@
+#Taylor Miller
+#21-4-22
+#Makefile for hands-on final cs3560
+CC = g++
+CFLAGS = -Wall -std=c++11
+all: main.cpp
+	$(CC) $(CFLAGS) main.cpp
+clean:
+	rm -f count *.o
+build: count
+
+MAIN: count
