@@ -6,7 +6,11 @@ using namespace std;
 
 int countLines(string pName);
 int countChar(string pName);
-
+/***
+ * main: contains logic to load in the argument with the executable
+ * argc: the number of arguments
+ * argv: char containing the argument, i.e. our fileName
+ * **/
 int main(int argc, char **argv)
 {
     //will get the string to be used for filename
@@ -28,13 +32,22 @@ int main(int argc, char **argv)
     }
     cout << numLines << " Lines\n";
     cout << numChar << " Characters\n";
+    //here, begin catch2 based testing required by instructor
+    //Assert::That(countChar("test.txt"), Equals(22));
 }
-
+/****
+ * countLines: function which will count the number of characters in a given  file
+ * string pName: will contain a string, being the name of a file
+ * **/
 int countLines(string pName)
 {
     int numLines=0;
     ifstream ins;
     ins.open(pName.c_str());
+    if(ins.fail()){
+        cout<<"invalid file name\n";
+        return 0;
+    }
     string tmp = "empty";
     while(!ins.eof())
     {
@@ -44,11 +57,19 @@ int countLines(string pName)
     ins.close();
     return numLines;
 }
+/****
+ * countChar: function which will count the number of characters in a given  file
+ * string pName: will contain a string, being the name of a file
+ * **/
 int countChar(string pName)
 {
     int numChar=0;
     ifstream ins;
     ins.open(pName.c_str());
+    if(ins.fail()){
+        cout<<"invalid file name\n";
+        return 0;
+    }
     char tmp = 'a';
     while(!ins.eof())
     {
@@ -59,6 +80,7 @@ int countChar(string pName)
         ins>>tmp;
         numChar++;
     }
+    numChar++;
     ins.close();
     return numChar;
 }
